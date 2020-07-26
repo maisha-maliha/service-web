@@ -13,6 +13,9 @@ Extra-light 200 Bold 700 Black 900
 	padding: 0;
 	font-weight: 200;
 }
+body{
+	overflow-x: hidden;
+}
 nav > div,
 header,
 .services,
@@ -34,7 +37,7 @@ nav > div {
 	justify-content: space-between;
 }
 
-ul {
+nav ul {
 	list-style: none;
 	align-self: start;
 	display: flex;
@@ -54,7 +57,7 @@ h1 {
 
 h3 {
 	font-size: 48px;
-	font-weight: bold;
+	font-weight: 900;
 }
 
 h4 {
@@ -69,7 +72,12 @@ li {
 	align-self: center;
 	font-size: 14px;
 }
-
+nav li{
+	cursor: pointer;
+}
+nav li:hover{
+	font-style: italic;
+}
 header {
 	display: grid;
 	grid-template-columns: 2fr 3fr;
@@ -99,8 +107,10 @@ header p {
 .services h3 {
 	margin: 80px 0;
 }
+.services h4{
+	color: var(--color);
+}
 .serv-card {
-	width: 90%;
 	margin: 80px auto;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
@@ -109,6 +119,8 @@ header p {
 .card {
 	border: 2px solid var(--color);
 	padding: 50px;
+	position: relative;
+	cursor: pointer;
 }
 .card .img img {
 	width: 100%;
@@ -117,6 +129,48 @@ header p {
 	text-align: center;
 	margin: 20px 0;
 }
+.card:hover{
+	background-color: var(--color);
+	transition: 0.5s;
+}
+.card:hover > .con{
+opacity: 0;
+transition: 0.5s;
+}
+.card:hover .img img{
+	opacity: 0;
+transition: 0.5s;
+}
+.card:hover .details{
+	animation-delay: 0.5s;
+	transition: 0.5s;
+	opacity: 1;
+}
+.details{
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 50px;
+	overflow: scroll;	
+	height: 285px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+.details p{
+	color: white;
+	padding: 5px;
+}
+.details::-webkit-scrollbar{
+	width: 10px;
+}
+.details::-webkit-scrollbar-track{
+	border:2px solid white;
+}
+.details::-webkit-scrollbar-thumb  {
+	background-color: white;
+	border-radius: 50px;
+}
 .client {
 	width: 100%;
 	background-color: var(--color);
@@ -124,10 +178,13 @@ header p {
 .client > div {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
+	margin-bottom: 0;
 }
 .client-data {
 	display: grid;
 	align-content: center;
+	grid-gap: 20px;
+	margin-bottom: 100px;
 }
 .client-data h3 {
 	text-align: center;
@@ -138,8 +195,11 @@ header p {
 	display: grid;
 	grid-template-columns: 1fr 3fr 1fr;
 	align-content: center;
+	grid-gap: 20px;
 }
-
+.client-logo img{
+	width: 100%;
+}
 .ar img {
 	width: 100px;
 }
@@ -147,10 +207,124 @@ header p {
 .r {
 	transform: rotate(180deg);
 }
+.slide{
+	overflow: hidden;
+}
+.slide p , .name{
+	overflow: hidden;
+	animation: move;
+	animation-iteration-count: infinite;
+	animation-duration: 7s;
+}
 .slide p {
 	margin: 50px auto;
 	color: white;
 }
 .name {
 	color: white;
+}
+
+footer{
+	width: 100%;
+	margin-top: 100px;
+}
+.foot{
+	width: 90%;
+	margin: 0 auto;
+	max-width: 1400px;
+	display: grid;
+	grid-template-columns: repeat(5 , 1fr);
+	grid-gap: 20px;
+	align-content: center;
+}
+.foot h4{
+	color: rgb(100, 100, 100);
+	font-size: 20px;
+}
+.foot ul{
+	list-style: circle;
+	display: block;
+	height: auto;
+}
+.foot li{
+	display: block;
+	padding: 10px 0;
+	color: rgb(187, 187, 187);
+	cursor: pointer;
+}
+.foot li:hover{
+	color: var(--color);
+	transition: 0.2s;
+}
+.foot p{
+	margin: 10px 0;
+}
+.us , .explore, .place, .follow, .legal{
+	margin: 10px 0;
+	display: grid;
+	justify-content: space-around;
+}
+.right{
+	text-align: center;
+	margin: 50px;
+	font-weight: 600;
+}
+.place h4:nth-of-type(2){
+	margin-top: 20px;
+}
+.foot address{
+	margin: 10px 0;
+}
+
+@media (max-width:1120px){
+	.client> div{
+		grid-template-columns: 1fr;
+	}
+	.client-logo {
+		display: grid;
+		justify-content: space-around;
+	}
+	.ar img{
+		width:50px;
+	}
+	.foot{
+		grid-template-columns: repeat(3,1fr);
+	}
+}
+@media (max-width:1120px){
+	header{
+		grid-template-columns: 1fr;
+	}
+	.foot{
+		grid-template-columns: 1fr;
+	}
+	.serv-card{
+		grid-template-columns: 1fr;
+	}
+	header h2{
+		margin: 0px;
+		font-size: 45px;
+		line-height: 50px;
+	}
+	header p{
+		margin: 20px 0;
+	}
+	.us , .explore, .place, .follow, .legal{
+		justify-content: start;
+	}
+}
+
+@keyframes move{
+	0%{
+		transform: translate(500px,0);
+	}
+	25%{
+		transform: translate(0px,0);
+	}
+	75%{
+		transform: translate(0px,0);
+	}
+	100%{
+		transform: translate(-500px,0);
+	}
 }
